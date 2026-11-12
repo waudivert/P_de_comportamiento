@@ -1,28 +1,155 @@
-<UserControl x:Class="Patrones_Comportamiento.Strategy.VistaStrategy"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="350">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Style="{StaticResource CardStyle}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+<UserControl
+    x:Class="Patrones_Comportamiento.Strategy.VistaStrategy"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer
+        Background="#F4F8F5"
+        VerticalScrollBarVisibility="Auto">
+
+        <Border
+            Background="White"
+            CornerRadius="15"
+            Margin="25"
+            Padding="25">
+
             <StackPanel>
-                <TextBlock Text="Strategy" FontSize="24" FontWeight="SemiBold"
-                           Foreground="{StaticResource ColorPrimario}"/>
-                <TextBlock Text="Algoritmos intercambiables" Margin="0,8,0,0" FontSize="15"
-                           Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
-                <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Strategy."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+
+                <!-- Título -->
+
+                <TextBlock
+                    Text="STRATEGY"
+                    Foreground="#267453"
+                    FontWeight="Bold"
+                    FontSize="14"/>
+
+                <TextBlock
+                    Text="Calculadora de descuentos"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Foreground="#173D30"
+                    Margin="0,8,0,10"/>
+
+                <TextBlock
+                    Text="Selecciona una estrategia para calcular el precio final."
+                    Foreground="#66776D"
+                    TextWrapping="Wrap"
+                    Margin="0,0,0,20"/>
+
+                <!-- Configuración -->
+
+                <Border
+                    Background="#E5F2E9"
+                    CornerRadius="12"
+                    Padding="20">
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="Precio original (Bs)"
+                            FontWeight="SemiBold"
+                            Margin="0,0,0,8"/>
+
+                        <TextBox
+                            x:Name="TxtPrecio"
+                            Text="100"
+                            Height="38"
+                            Padding="8,6"/>
+
+                        <TextBlock
+                            Text="Tipo de descuento"
+                            FontWeight="SemiBold"
+                            Margin="0,18,0,10"/>
+
+                        <ComboBox
+                            x:Name="CmbDescuentos"
+                            Height="38">
+
+                            <ComboBoxItem
+                                Content="Sin descuento"/>
+
+                            <ComboBoxItem
+                                Content="Descuento del 10%"/>
+
+                            <ComboBoxItem
+                                Content="Descuento del 20%"/>
+
+                        </ComboBox>
+
+                        <Button
+                            Content="Calcular precio final"
+                            Height="42"
+                            Background="#267453"
+                            Foreground="White"
+                            FontWeight="SemiBold"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Margin="0,20,0,0"
+                            Click="BtnCalcular_Click"/>
+
+                    </StackPanel>
                 </Border>
+
+                <!-- Resultado -->
+
+                <Border
+                    Background="#F4F8F2"
+                    BorderBrush="#D6E6DB"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="20"
+                    Margin="0,20,0,0">
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="PRECIO FINAL"
+                            Foreground="#267453"
+                            FontWeight="Bold"
+                            FontSize="14"/>
+
+                        <TextBlock
+                            x:Name="TxtResultado"
+                            Text="Bs 0.00"
+                            FontWeight="Bold"
+                            FontSize="32"
+                            Foreground="#173D30"
+                            Margin="0,10,0,0"/>
+
+                        <TextBlock
+                            x:Name="TxtMensaje"
+                            Text="El resultado aparecerá aquí."
+                            Foreground="#66776D"
+                            TextWrapping="Wrap"
+                            Margin="0,10,0,0"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Explicación -->
+
+                <Border
+                    Background="#E5F2E9"
+                    CornerRadius="10"
+                    Padding="16"
+                    Margin="0,20,0,0">
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="¿Qué demuestra Strategy?"
+                            FontWeight="Bold"
+                            Foreground="#173D30"/>
+
+                        <TextBlock
+                            Text="Permite cambiar el algoritmo de descuento sin modificar la calculadora. Todas las estrategias utilizan la misma interfaz."
+                            TextWrapping="Wrap"
+                            Foreground="#65766C"
+                            Margin="0,8,0,0"/>
+
+                    </StackPanel>
+                </Border>
+
             </StackPanel>
         </Border>
     </ScrollViewer>

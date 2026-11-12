@@ -1,0 +1,29 @@
+<UserControl x:Class="Patrones_Comportamiento.Observer.VistaObserver"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MinWidth="350">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border Style="{StaticResource CardStyle}"
+                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="Observer" FontSize="24" FontWeight="SemiBold"
+                           Foreground="{StaticResource ColorPrimario}"/>
+                <TextBlock Text="Notificaciones ante cambios" Margin="0,8,0,0" FontSize="15"
+                           Foreground="{StaticResource TextoOscuro}"/>
+                <TextBlock Text="Espacio preparado para implementar el patrón."
+                           Margin="0,8,0,0" FontSize="14"
+                           Foreground="{StaticResource TextoClaro}"/>
+                <Border Background="{StaticResource InputColor}"
+                        BorderBrush="{StaticResource BordesSuaves}"
+                        BorderThickness="1" CornerRadius="10"
+                        Padding="24" Margin="0,22,0,0" MinHeight="190">
+                    <TextBlock Text="Aquí se desarrollará el ejemplo de Observer."
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource TextoClaro}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</UserControl>

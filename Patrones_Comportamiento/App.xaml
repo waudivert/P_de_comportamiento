@@ -1,0 +1,73 @@
+<Application x:Class="Patrones_Comportamiento.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- Paleta VetLink -->
+        <SolidColorBrush x:Key="ColorPrimario" Color="#246B50"/>
+        <SolidColorBrush x:Key="ColorPrimarioHover" Color="#18533D"/>
+        <SolidColorBrush x:Key="PrimarioSuave" Color="#DCEFE2"/>
+        <SolidColorBrush x:Key="FondoLavanda" Color="#F3F8F2"/>
+        <SolidColorBrush x:Key="Card" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="InputColor" Color="#F2F7F2"/>
+        <SolidColorBrush x:Key="BordesSuaves" Color="#D8E6DA"/>
+        <SolidColorBrush x:Key="TextoOscuro" Color="#183C30"/>
+        <SolidColorBrush x:Key="TextoClaro" Color="#647B6B"/>
+
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource FondoLavanda}"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoOscuro}"/>
+        </Style>
+
+        <Style x:Key="SidebarStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource PrimarioSuave}"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+
+        <Style x:Key="ContentPanelStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource FondoLavanda}"/>
+            <Setter Property="Padding" Value="24"/>
+        </Style>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="{StaticResource TextoOscuro}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="14,12"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Borde"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="9"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Borde"
+                                        Property="Background"
+                                        Value="#B6DDC7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BordesSuaves}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="26"/>
+        </Style>
+    </Application.Resources>
+</Application>

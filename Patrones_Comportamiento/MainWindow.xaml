@@ -1,0 +1,57 @@
+<Window x:Class="Patrones_Comportamiento.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Patrones de comportamiento | Plantilla WPF"
+        Height="740" Width="1250" MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Style="{StaticResource SidebarStyle}">
+            <StackPanel>
+                <TextBlock Text="Patrones" FontSize="30" FontWeight="Bold"
+                           Foreground="{StaticResource ColorPrimario}" Margin="0,15,0,3"/>
+                <TextBlock Text="Patrones de comportamiento"
+                           Foreground="{StaticResource TextoClaro}" Margin="0,0,0,28"/>
+                <Button Content="Chain of Responsibility" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnChainOfResponsibility_Click"/>
+                <Button Content="Command" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnCommand_Click"/>
+                <Button Content="Iterator" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnIterator_Click"/>
+                <Button Content="Mediator" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnMediator_Click"/>
+                <Button Content="Memento" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnMemento_Click"/>
+                <Button Content="Observer" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnObserver_Click"/>
+                <Button Content="State" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnState_Click"/>
+                <Button Content="Strategy" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnStrategy_Click"/>
+                <Button Content="Template Method" Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnTemplateMethod_Click"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Column="1" Style="{StaticResource ContentPanelStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Background="{StaticResource ColorPrimario}" CornerRadius="13"
+                        Padding="22,18" Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Patrones de diseño de comportamiento"
+                                   FontSize="25" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="Plantilla de trabajo · Un módulo independiente por patrón"
+                                   FontSize="12" Margin="0,5,0,0" Foreground="#E4F4E9"/>
+                    </StackPanel>
+                </Border>
+                <ContentControl x:Name="ContenedorContenido" Grid.Row="1"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

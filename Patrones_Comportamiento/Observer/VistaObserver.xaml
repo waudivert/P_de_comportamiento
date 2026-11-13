@@ -3,26 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              MinWidth="350">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Style="{StaticResource CardStyle}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Border Style="{StaticResource CardStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="Observer" FontSize="24" FontWeight="SemiBold"
+                <TextBlock Text="Observer · Avisos de la ficha" FontSize="24" FontWeight="SemiBold"
                            Foreground="{StaticResource ColorPrimario}"/>
-                <TextBlock Text="Notificaciones ante cambios" Margin="0,8,0,0" FontSize="15"
-                           Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
-                <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Observer."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                <TextBlock Text="Un cambio en la ficha avisa a los roles que estén escuchando. Prueba quitando uno y compara los resultados."
+                           Margin="0,7,0,0" TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
+
+                <Border Background="{StaticResource PrimarioSuave}" CornerRadius="10"
+                        Padding="18" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Luna   ·   BOV-001" FontSize="19" FontWeight="SemiBold"/>
+                        <TextBlock Text="Granja demostrativa" Foreground="{StaticResource TextoClaro}"/>
+                        <TextBlock x:Name="TextoVacuna" Margin="0,12,0,3" TextWrapping="Wrap"/>
+                        <TextBlock x:Name="TextoRetiro" TextWrapping="Wrap"/>
+                    </StackPanel>
                 </Border>
+
+                <TextBlock Text="¿Quién recibe los avisos?" FontSize="17" FontWeight="SemiBold"
+                           Margin="0,22,0,6"/>
+                <TextBlock Text="Desmarca Trabajador para comprobar que deja de recibir los siguientes cambios."
+                           Foreground="{StaticResource TextoClaro}" TextWrapping="Wrap"/>
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="EncargadoCheck" Content="Encargado" IsChecked="True"
+                              Margin="0,8,10,8" Checked="Suscripcion_Cambio" Unchecked="Suscripcion_Cambio"/>
+                    <TextBlock x:Name="AvisoEncargado" Grid.Column="1" Margin="0,8,0,8"
+                               Text="Esperando un cambio" TextWrapping="Wrap"/>
+                    <CheckBox x:Name="VeterinarioCheck" Grid.Row="1" Content="Veterinario" IsChecked="True"
+                              Margin="0,8,10,8" Checked="Suscripcion_Cambio" Unchecked="Suscripcion_Cambio"/>
+                    <TextBlock x:Name="AvisoVeterinario" Grid.Row="1" Grid.Column="1" Margin="0,8,0,8"
+                               Text="Esperando un cambio" TextWrapping="Wrap"/>
+                    <CheckBox x:Name="TrabajadorCheck" Grid.Row="2" Content="Trabajador" IsChecked="True"
+                              Margin="0,8,10,8" Checked="Suscripcion_Cambio" Unchecked="Suscripcion_Cambio"/>
+                    <TextBlock x:Name="AvisoTrabajador" Grid.Row="2" Grid.Column="1" Margin="0,8,0,8"
+                               Text="Esperando un cambio" TextWrapping="Wrap"/>
+                </Grid>
+
+                <Border Background="{StaticResource InputColor}" BorderBrush="{StaticResource BordesSuaves}"
+                        BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Prueba con una vacuna" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBlock Text="El veterinario la programa; el trabajador registra cuando se aplicó."
+                                   Margin="0,5,0,0" TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
+                        <WrapPanel Margin="0,12,0,0">
+                            <StackPanel Margin="0,0,12,10">
+                                <TextBlock Text="Vacuna"/>
+                                <TextBox x:Name="CampoVacuna" Text="Antiaftosa" Width="185"
+                                         Padding="7" Margin="0,5,0,0"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,12,10">
+                                <TextBlock Text="Fecha programada"/>
+                                <DatePicker x:Name="FechaVacuna" Width="160" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Content="Programar vacuna" Padding="13,9" Margin="0,0,10,8"
+                                    Click="ProgramarVacuna_Click"/>
+                            <Button Content="Marcar como aplicada" Padding="13,9" Margin="0,0,0,8"
+                                    Click="RegistrarAplicacion_Click"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="{StaticResource PrimarioSuave}" CornerRadius="10"
+                        Padding="16" Margin="0,16,0,0">
+                    <WrapPanel VerticalAlignment="Center">
+                        <StackPanel Margin="0,0,20,8">
+                            <TextBlock Text="Día de la demostración" Foreground="{StaticResource TextoClaro}"/>
+                            <TextBlock x:Name="TextoDia" FontSize="17" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        <Button Content="Avanzar un día" Padding="13,9" Margin="0,0,0,8"
+                                Click="AvanzarDia_Click"/>
+                    </WrapPanel>
+                </Border>
+                <TextBlock x:Name="TextoResultado" Text="Empieza programando la vacuna."
+                           Margin="0,12,0,0" TextWrapping="Wrap" Foreground="{StaticResource ColorPrimario}"/>
+
+                <Expander Header="Otro ejemplo: fin del período de retiro" Margin="0,22,0,0">
+                    <StackPanel Margin="0,12,0,0">
+                        <TextBlock Text="El veterinario indica el fin; este ejemplo no calcula plazos clínicos ni confirma que la leche sea apta."
+                                   Foreground="{StaticResource TextoClaro}" TextWrapping="Wrap"/>
+                        <StackPanel Margin="0,12,0,10" HorizontalAlignment="Left">
+                            <TextBlock Text="Fecha de fin (18:00)"/>
+                            <DatePicker x:Name="FechaRetiro" Width="160" Margin="0,5,0,0"/>
+                        </StackPanel>
+                        <Button Content="Registrar fecha de retiro" Padding="13,9" HorizontalAlignment="Left"
+                                Click="IndicarRetiro_Click"/>
+                        <TextBlock Text="Avanza los días arriba hasta llegar a esta fecha para ver el aviso."
+                                   Foreground="{StaticResource TextoClaro}" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Expander>
+                <TextBlock Text="Demo local: sin cuentas, notificaciones externas ni guardado permanente."
+                           Margin="0,18,0,0" Foreground="{StaticResource TextoClaro}" FontSize="12"
+                           TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
     </ScrollViewer>

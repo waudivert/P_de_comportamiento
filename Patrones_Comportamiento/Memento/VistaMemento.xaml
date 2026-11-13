@@ -10,18 +10,30 @@
                            Foreground="{StaticResource ColorPrimario}"/>
                 <TextBlock Text="Guardar y restaurar estados" Margin="0,8,0,0" FontSize="15"
                            Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
+                <TextBlock Text="Editor de notas · Guarda versiones y recupera una anterior sin depender de VetLink."
+                            Margin="0,8,0,0" FontSize="14"
+                            TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
                 <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Memento."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                         BorderBrush="{StaticResource BordesSuaves}"
+                         BorderThickness="1" CornerRadius="10"
+                         Padding="24" Margin="0,22,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Título" FontWeight="SemiBold"/>
+                        <TextBox x:Name="CampoTitulo" Text="Mi nota" Margin="0,8,0,16" Padding="8"/>
+                        <TextBlock Text="Contenido" FontWeight="SemiBold"/>
+                        <TextBox x:Name="CampoContenido" Margin="0,8,0,16" Padding="8"
+                                 Height="130" AcceptsReturn="True" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"/>
+                        <Button Content="Guardar versión" HorizontalAlignment="Left" Padding="14,9"
+                                Click="GuardarVersion_Click"/>
+                        <TextBlock Text="Versiones guardadas" FontWeight="SemiBold" Margin="0,22,0,8"/>
+                        <ListBox x:Name="ListaVersiones" MinHeight="90" MaxHeight="180"/>
+                        <Button Content="Restaurar versión seleccionada" HorizontalAlignment="Left"
+                                Padding="14,9" Margin="0,12,0,0" Click="RestaurarVersion_Click"/>
+                        <TextBlock x:Name="TextoResultado" Margin="0,12,0,0"
+                                   Text="Todavía no hay versiones guardadas."
+                                   TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>

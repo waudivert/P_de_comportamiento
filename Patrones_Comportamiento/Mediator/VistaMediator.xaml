@@ -1,28 +1,41 @@
 <UserControl x:Class="Patrones_Comportamiento.Mediator.VistaMediator"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="350">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Style="{StaticResource CardStyle}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" MinWidth="350">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{StaticResource FondoLavanda}">
+        <Border Style="{StaticResource CardStyle}" Margin="18" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="Mediator" FontSize="24" FontWeight="SemiBold"
-                           Foreground="{StaticResource ColorPrimario}"/>
-                <TextBlock Text="Comunicación entre componentes" Margin="0,8,0,0" FontSize="15"
-                           Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
-                <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Mediator."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                <TextBlock Text="MEDIATOR" Foreground="{StaticResource ColorPrimario}" FontWeight="Bold"/>
+                <TextBlock Text="Coordinación de pedidos de una tienda" FontSize="24" FontWeight="Bold" Margin="0,8,0,6"/>
+                <TextBlock Text="Atención al cliente, Almacen y Envios se comunican únicamente a través de un mediador central." TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
+                <Border Background="{StaticResource InputColor}" CornerRadius="10" Padding="16" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="1. Atención al cliente — registrar pedido" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBox x:Name="TxtNuevoPedido" Text="PED-025" Padding="8" Margin="0,10,0,10"/>
+                        <Button Content="Registrar y avisar al almacén" Click="BtnRegistrar_Click" Background="{StaticResource ColorPrimario}" Foreground="White" Padding="12,9"/>
+                    </StackPanel>
                 </Border>
+                <Border Background="{StaticResource InputColor}" CornerRadius="10" Padding="16" Margin="0,12,0,0">
+                    <StackPanel>
+                        <TextBlock Text="2. Almacén — preparar producto" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtPedidoActual" Text="Pedido: ninguno" Margin="0,8,0,8"/>
+                        <ComboBox x:Name="CmbArticulo" SelectedIndex="0" Padding="6">
+                            <ComboBoxItem Content="Arduino UNO"/><ComboBoxItem Content="ESP32"/><ComboBoxItem Content="Protoboard"/>
+                        </ComboBox>
+                        <Button Content="Preparar y avisar a envíos" Click="BtnPreparar_Click" Padding="12,9" Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="{StaticResource InputColor}" CornerRadius="10" Padding="16" Margin="0,12,0,0">
+                    <StackPanel>
+                        <TextBlock Text="3. Envíos — despachar paquete" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtPaquete" Text="Paquete: ninguno" Margin="0,8,0,10"/>
+                        <Button Content="Confirmar envío" Click="BtnEntregar_Click" Padding="12,9"/>
+                    </StackPanel>
+                </Border>
+                <TextBlock Text="Mensajes coordinados por el mediador" FontSize="17" FontWeight="SemiBold" Margin="0,20,0,8"/>
+                <ListBox x:Name="ListaMensajes" Height="160"/>
+                <TextBlock x:Name="TxtAviso" Text="Atención al cliente: sin avisos" TextWrapping="Wrap" Margin="0,12,0,0" Foreground="{StaticResource TextoClaro}"/>
+                <Button Content="Reiniciar demostración" Click="BtnReiniciar_Click" HorizontalAlignment="Left" Padding="15,9" Margin="0,14,0,0"/>
+                <TextBlock Text="Patrón: IMediadorPedidos → MediadorPedidos ↔ AtencionCliente / Almacen / Envios" TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}" Margin="0,16,0,0"/>
             </StackPanel>
         </Border>
     </ScrollViewer>

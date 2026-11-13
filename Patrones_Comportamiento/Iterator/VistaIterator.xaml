@@ -1,28 +1,42 @@
 <UserControl x:Class="Patrones_Comportamiento.Iterator.VistaIterator"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="350">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Style="{StaticResource CardStyle}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" MinWidth="350">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="{StaticResource FondoLavanda}">
+        <Border Style="{StaticResource CardStyle}" Margin="18" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="Iterator" FontSize="24" FontWeight="SemiBold"
-                           Foreground="{StaticResource ColorPrimario}"/>
-                <TextBlock Text="Recorrido de colecciones" Margin="0,8,0,0" FontSize="15"
-                           Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
-                <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Iterator."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                <TextBlock Text="ITERATOR" Foreground="{StaticResource ColorPrimario}" FontWeight="Bold"/>
+                <TextBlock Text="Catálogo de productos" FontSize="24" FontWeight="Bold" Margin="0,8,0,6"/>
+                <TextBlock Text="Recorre los productos del catálogo sin acceder directamente a la lista interna." TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}"/>
+                <Border Background="{StaticResource InputColor}" CornerRadius="10" Padding="16" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Registrar producto" FontWeight="SemiBold" FontSize="17"/>
+                        <TextBlock Text="Código de producto" Margin="0,12,0,4"/>
+                        <TextBox x:Name="TxtCodigo" Text="ROB-004" Padding="8"/>
+                        <TextBlock Text="Nombre" Margin="0,10,0,4"/>
+                        <TextBox x:Name="TxtNombre" Text="ESP32" Padding="8"/>
+                        <TextBlock Text="Categoria" Margin="0,10,0,4"/>
+                        <ComboBox x:Name="CmbCategoria" SelectedIndex="0" Padding="6">
+                            <ComboBoxItem Content="Electrónica"/><ComboBoxItem Content="Accesorios"/><ComboBoxItem Content="Herramientas"/><ComboBoxItem Content="Robótica"/>
+                        </ComboBox>
+                        <Button Content="Agregar producto" Click="BtnAgregar_Click" Background="{StaticResource ColorPrimario}" Foreground="White" Padding="12,9" Margin="0,14,0,0"/>
+                    </StackPanel>
                 </Border>
+                <TextBlock x:Name="TxtCantidad" FontWeight="SemiBold" Margin="0,20,0,8"/>
+                <ListBox x:Name="ListaProductos" Height="135"/>
+                <TextBlock Text="Recorrer con Iterator" FontSize="17" FontWeight="SemiBold" Margin="0,20,0,8"/>
+                <WrapPanel>
+                    <Button Content="Siguiente →" Click="BtnSiguiente_Click" Background="{StaticResource ColorPrimario}" Foreground="White" Padding="16,9" Margin="0,0,8,8"/>
+                    <Button Content="Reiniciar recorrido" Click="BtnReiniciar_Click" Padding="16,9" Margin="0,0,8,8"/>
+                    <Button Content="Recorrer todos" Click="BtnTodos_Click" Padding="16,9" Margin="0,0,8,8"/>
+                </WrapPanel>
+                <Border Background="{StaticResource PrimarioSuave}" CornerRadius="10" Padding="15" Margin="0,8,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Resultado del iterador" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TxtActual" Text="Presiona Siguiente para comenzar." TextWrapping="Wrap" Margin="0,8,0,0"/>
+                        <TextBlock x:Name="TxtProgreso" Margin="0,6,0,0" Foreground="{StaticResource TextoClaro}"/>
+                    </StackPanel>
+                </Border>
+                <TextBlock Text="Patrón: IListaProductos → RegistroProductos → IIterador → IteradorProductos" TextWrapping="Wrap" Foreground="{StaticResource TextoClaro}" Margin="0,16,0,0"/>
             </StackPanel>
         </Border>
     </ScrollViewer>

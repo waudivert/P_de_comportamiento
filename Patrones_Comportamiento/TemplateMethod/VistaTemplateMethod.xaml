@@ -1,27 +1,192 @@
-<UserControl x:Class="Patrones_Comportamiento.TemplateMethod.VistaTemplateMethod"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="350">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Style="{StaticResource CardStyle}"
-                HorizontalAlignment="Stretch" VerticalAlignment="Top">
+<UserControl
+    x:Class="Patrones_Comportamiento.TemplateMethod.VistaTemplateMethod"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer
+        Background="#F4F8F5"
+        VerticalScrollBarVisibility="Auto">
+
+        <Border
+            Background="White"
+            CornerRadius="15"
+            Margin="25"
+            Padding="25">
+
             <StackPanel>
-                <TextBlock Text="Template Method" FontSize="24" FontWeight="SemiBold"
-                           Foreground="{StaticResource ColorPrimario}"/>
-                <TextBlock Text="Pasos comunes con variaciones" Margin="0,8,0,0" FontSize="15"
-                           Foreground="{StaticResource TextoOscuro}"/>
-                <TextBlock Text="Espacio preparado para implementar el patrón."
-                           Margin="0,8,0,0" FontSize="14"
-                           Foreground="{StaticResource TextoClaro}"/>
-                <Border Background="{StaticResource InputColor}"
-                        BorderBrush="{StaticResource BordesSuaves}"
-                        BorderThickness="1" CornerRadius="10"
-                        Padding="24" Margin="0,22,0,0" MinHeight="190">
-                    <TextBlock Text="Aquí se desarrollará el ejemplo de Template Method."
-                               TextWrapping="Wrap"
-                               Foreground="{StaticResource TextoClaro}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                <!-- Título -->
+                <TextBlock
+                    Text="TEMPLATE METHOD"
+                    Foreground="#267453"
+                    FontWeight="Bold"
+                    FontSize="14"/>
+
+                <TextBlock
+                    Text="Preparador de Bebidas Calientes"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Foreground="#173D30"
+                    Margin="0,8,0,10"/>
+
+                <TextBlock
+                    Text="El método plantilla (Template Method) define los pasos exactos para hacer una bebida. Los pasos 1 y 3 son fijos e iguales para todos, mientras que los pasos 2 y 4 son personalizados por cada bebida concreta."
+                    Foreground="#66776D"
+                    TextWrapping="Wrap"
+                    Margin="0,0,0,20"/>
+
+                <!-- Configuración / Selección -->
+                <Border
+                    Background="#E5F2E9"
+                    CornerRadius="12"
+                    Padding="20">
+
+                    <StackPanel>
+                        <TextBlock
+                            Text="Selecciona la bebida a preparar:"
+                            FontWeight="SemiBold"
+                            Margin="0,0,0,10"/>
+
+                        <ComboBox
+                            x:Name="CmbBebidas"
+                            Height="38">
+                            <ComboBoxItem Content="☕ Café Americano" IsSelected="True"/>
+                            <ComboBoxItem Content="🍵 Té Verde Japonés"/>
+                            <ComboBoxItem Content="🍫 Chocolate Suizo Caliente"/>
+                        </ComboBox>
+
+                        <CheckBox
+                            x:Name="ChkEndulzante"
+                            Content="Añadir azúcar orgánica (Paso Opcional / Gancho)"
+                            IsChecked="True"
+                            FontWeight="SemiBold"
+                            Foreground="#173D30"
+                            Margin="0,15,0,0"/>
+
+                        <Button
+                            Content="Ejecutar receta con Template Method"
+                            Height="42"
+                            Margin="0,20,0,0"
+                            Background="#267453"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontWeight="SemiBold"
+                            Cursor="Hand"
+                            Click="BtnPreparar_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Visualización de Pasos Ejecutados -->
+                <Border
+                    Background="#F4F8F2"
+                    BorderBrush="#D6E6DB"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="20"
+                    Margin="0,20,0,0">
+
+                    <StackPanel>
+                        <TextBlock
+                            Text="PASOS EJECUTADOS POR LA PLANTILLA"
+                            FontWeight="Bold"
+                            Foreground="#267453"/>
+
+                        <ItemsControl
+                            x:Name="ListaPasos"
+                            Margin="0,12,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="White"
+                                        BorderBrush="#D6E6DB"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="14,10"
+                                        Margin="0,0,0,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                Text="{Binding Titulo}"
+                                                FontWeight="Bold"
+                                                Foreground="#173D30"
+                                                VerticalAlignment="Center"
+                                                Width="220"/>
+
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Text="{Binding Descripcion}"
+                                                Foreground="#4A5568"
+                                                TextWrapping="Wrap"
+                                                VerticalAlignment="Center"
+                                                Margin="10,0"/>
+
+                                            <Border
+                                                Grid.Column="2"
+                                                Background="#E5F2E9"
+                                                CornerRadius="6"
+                                                Padding="8,4"
+                                                VerticalAlignment="Center">
+                                                <TextBlock
+                                                    Text="{Binding TipoPasoTexto}"
+                                                    FontSize="11"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="{Binding ColorTipo}"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Resumen didáctico -->
+                <Border
+                    Background="#E5F2E9"
+                    CornerRadius="12"
+                    Padding="20"
+                    Margin="0,18,0,0">
+
+                    <StackPanel>
+                        <TextBlock
+                            Text="ESTRUCTURA DEL PATRÓN EN ESTE EJEMPLO"
+                            FontWeight="Bold"
+                            Foreground="#267453"/>
+
+                        <TextBlock
+                            x:Name="TxtResumen"
+                            Text="Selecciona una bebida y presiona el botón para observar la ejecución de la plantilla."
+                            FontSize="14"
+                            TextWrapping="Wrap"
+                            Foreground="#173D30"
+                            Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Explicación -->
+                <Border
+                    Background="#F4F8F2"
+                    CornerRadius="10"
+                    Padding="16"
+                    Margin="0,20,0,0">
+
+                    <StackPanel>
+                        <TextBlock
+                            Text="¿Por qué es Template Method?"
+                            FontWeight="Bold"
+                            Foreground="#173D30"/>
+
+                        <TextBlock
+                            Text="La clase base 'PreparadorBebida' controla el orden inalterable (Hervir agua -> Elaborar ingrediente -> Servir -> Añadir toque característico). Las subclases solo proporcionan su propia receta para los pasos abstractos sin cambiar la secuencia."
+                            TextWrapping="Wrap"
+                            Foreground="#65766C"
+                            Margin="0,8,0,0"/>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
